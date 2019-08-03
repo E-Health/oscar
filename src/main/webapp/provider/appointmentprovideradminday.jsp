@@ -109,10 +109,11 @@
 	LookupListManager lookupListManager = SpringUtils.getBean(LookupListManager.class);
 	LookupList reasonCodes = lookupListManager.findLookupListByName(loggedInInfo1, "reasonCode");
 	Map<Integer,LookupListItem> reasonCodesMap = new  HashMap<Integer,LookupListItem>();
-	for(LookupListItem lli:reasonCodes.getItems()) {
-		reasonCodesMap.put(lli.getId(),lli);	
-	}
-
+	if(reasonCodes != null) {
+        for (LookupListItem lli : reasonCodes.getItems()) {
+            reasonCodesMap.put(lli.getId(), lli);
+        }
+    }
 	String roleName$ = (String)session.getAttribute("userrole") + "," + (String) session.getAttribute("user");
 
     boolean isSiteAccessPrivacy=false;
